@@ -21,7 +21,7 @@ def on_click(button_text):
 # 1. Initialize the main window
 root = tk.Tk()
 root.title("Python Calculator")
-root.geometry("300x400")
+root.geometry("400x500")
 root.resizable(False, False)
 
 # 2. Create the display entry at the top
@@ -42,7 +42,7 @@ col_val = 0
 # 4. Loop through the list to create and place buttons
 for button in buttons:
     # Use lambda to pass the specific button text to the function
-    tk.Button(root, text=button, width=5, height=2, font=("Arial", 14),
+    tk.Button(root, text=button, width=5, height=2, font=("Arial", 18),
               command=lambda b=button: on_click(b)).grid(row=row_val, column=col_val, padx=5, pady=5)
     
     col_val += 1
