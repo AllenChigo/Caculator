@@ -23,6 +23,8 @@ def on_click(button_text):
             entry.insert(tk.END, "Error")
     elif button_text == "C":
         entry.delete(0, tk.END)
+    elif button_text == "⌫":  # Backspace
+        entry.delete(len(current) - 1)
     elif button_text == "sin":
         try:
             result = math.sin(math.radians(float(current)))
@@ -44,6 +46,20 @@ def on_click(button_text):
             entry.insert(tk.END, str(result))
         except Exception:
             entry.insert(tk.END, " Error")
+    elif button_text == "log":
+        try:
+            result = math.log10(float(current))
+            entry.delete(0, tk.END)
+            entry.insert(tk.END, str(result))
+        except Exception:
+            entry.insert(tk.END, " Error")
+    elif button_text == "ln":
+        try:
+            result = math.log(float(current))
+            entry.delete(0, tk.END)
+            entry.insert(tk.END, str(result))
+        except Exception:
+            entry.insert(tk.END, " Error")
     elif button_text == "√":
         try:
             result = math.sqrt(float(current))
@@ -51,10 +67,44 @@ def on_click(button_text):
             entry.insert(tk.END, str(result))
         except Exception:
             entry.insert(tk.END, " Error")
+    elif button_text == "x²":
+        try:
+            result = float(current) ** 2
+            entry.delete(0, tk.END)
+            entry.insert(tk.END, str(result))
+        except Exception:
+            entry.insert(tk.END, " Error")
+    elif button_text == "x³":
+        try:
+            result = float(current) ** 3
+            entry.delete(0, tk.END)
+            entry.insert(tk.END, str(result))
+        except Exception:
+            entry.insert(tk.END, " Error")
+    elif button_text == "1/x":
+        try:
+            result = 1 / float(current)
+            entry.delete(0, tk.END)
+            entry.insert(tk.END, str(result))
+        except Exception:
+            entry.insert(tk.END, " Error")
+    elif button_text == "!":
+        try:
+            result = math.factorial(int(float(current)))
+            entry.delete(0, tk.END)
+            entry.insert(tk.END, str(result))
+        except Exception:
+            entry.insert(tk.END, " Error")
     elif button_text == "π":
         entry.insert(tk.END, str(math.pi))
+    elif button_text == "e":
+        entry.insert(tk.END, str(math.e))
     elif button_text == "^":
         entry.insert(tk.END, "**")
+    elif button_text == "(":
+        entry.insert(tk.END, "(")
+    elif button_text == ")":
+        entry.insert(tk.END, ")")
     else:
         entry.insert(tk.END, button_text)
 
@@ -65,6 +115,7 @@ def update_display():
             widget.destroy()
     
     create_buttons()
+    resize_window()
 
 def create_buttons():
     """Create buttons based on current mode."""
@@ -73,45 +124,5 @@ def create_buttons():
             '7', '8', '9', '/',
             '4', '5', '6', '*',
             '1', '2', '3', '-',
-            'C', '0', '=', '+'
-        ]
-    else:
-        buttons = [
-            'sin', 'cos', 'tan', '/',
-            '7', '8', '9', '*',
-            '4', '5', '6', '-',
-            '√', '0', '=', '+',
-            'π', '^', 'C', '.'
-        ]
-    
-    row_val = 1
-    col_val = 0
-    
-    for button in buttons:
-        tk.Button(root, text=button, width=5, height=2, font=("Arial", 12),
-                  command=lambda b=button: on_click(b)).grid(row=row_val, column=col_val, padx=5, pady=5)
-        
-        col_val += 1
-        if col_val > 3:
-            col_val = 0
-            row_val += 1
-
-# Initialize the main window
-root = tk.Tk()
-root.title("Python Calculator")
-root.geometry("400x550")
-root.resizable(False, False)
-
-# Mode toggle button
-mode_button = tk.Button(root, text="Mode: Basic", command=toggle_mode, font=("Arial", 10), bg="lightblue")
-mode_button.grid(row=0, column=0, columnspan=4, padx=10, pady=5, sticky="ew")
-
-# Create the display entry
-entry = tk.Entry(root, width=16, font=("Arial", 24), borderwidth=5, relief="flat", justify="right")
-entry.grid(row=1, column=0, columnspan=4, padx=10, pady=20)
-
-# Create buttons
-create_buttons()
-
-# Start the application loop
-root.mainloop()
+            'C', '0](#)
+
